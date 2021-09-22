@@ -1,7 +1,7 @@
 import React, { useReducer, useContext } from 'react'
 import { Pane, TextInput, Heading, Button, Text, Link } from 'evergreen-ui'
 import { Auth } from 'aws-amplify'
-import { Context } from '../App'
+import { Context } from '../../App'
 
 const LoginPopover = () => {
   const { dispatch } = useContext(Context)

@@ -1,13 +1,11 @@
 import React, { useContext } from 'react'
 import { Popover, Pane, Strong, Heading } from 'evergreen-ui'
 import { Context } from '../App'
-import LoginPopover from './LoginPopover'
+import LoginPopover from './AuthComponents/LoginPopover'
 import { Auth } from 'aws-amplify'
 
-const Header = () => {
+const Navbar = () => {
   const { state, dispatch } = useContext(Context)
-
-  console.log(state, 'quin in header')
 
   const logout = async () => {
     try {
@@ -49,4 +47,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Navbar

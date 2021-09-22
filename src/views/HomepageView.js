@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import { toaster, Heading, Pane, Button } from 'evergreen-ui'
 
 const Homepage = ({ error }) => {
@@ -9,15 +9,9 @@ const Homepage = ({ error }) => {
     <div>
       {error && toaster.danger(error.message)}
 
-      <Header />
+      <Navbar />
 
-      <Pane
-        marginTop="30px"
-        display="flex"
-        flexDirection="column"
-        width="50%"
-        padding="20"
-      >
+      <Pane margin="30px" display="flex" flexDirection="column" width="50%">
         <Heading
           color="#2cb67d"
           fontSize="7ch"

@@ -2,6 +2,7 @@ import React, { useReducer, useContext } from 'react'
 import { Pane, TextInput, Heading, Button, toaster } from 'evergreen-ui'
 import { Auth } from 'aws-amplify'
 import { Context } from '../App'
+import ConfirmationModal from '../components/AuthComponents/ConfirmationModal'
 
 const Register = () => {
   const { state, dispatch } = useContext(Context)
@@ -10,6 +11,7 @@ const Register = () => {
     username: '',
     password: '',
     email: '',
+    openModal: false,
   }
 
   // create reducer
@@ -17,6 +19,10 @@ const Register = () => {
     switch (action.type) {
       case 'SET_INPUT':
         return { ...state, [action.inputName]: action.inputValue }
+      case 'REGISTER_SUCCESS':
+        return { ...state, openModal: true }
+      case 'CLOSE_MODAL':
+        return { ...state, openModal: false }
       default:
         return state
     }
@@ -26,6 +32,7 @@ const Register = () => {
   const [dispatchState, dispatchReducer] = useReducer(reducer, initialState)
 
   console.log(state, ' qui')
+  console.log(dispatchState, ' qusi')
 
   // event handler
   function onChange(event) {
@@ -46,6 +53,8 @@ const Register = () => {
           email,
         },
       })
+      //open the modal when the sign up is successful
+      dispatchReducer({ type: 'REGISTER_SUCCESS' })
     } catch (e) {
       console.log(e, ' in error')
       dispatch({
@@ -131,6 +140,15 @@ const Register = () => {
           SIGN UP
         </Button>
       </Pane>
+      <ConfirmationModal
+        user={dispatchState.username}
+        isOpen={dispatchState.openModal}
+        closeModal={() =>
+          dispatchReducer({
+            type: 'CLOSE_MODAL',
+          })
+        }
+      />
     </Pane>
   )
 }

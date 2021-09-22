@@ -10,9 +10,11 @@ import { ChakraProvider } from '@chakra-ui/react'
 export const Context = createContext()
 
 function App() {
+  //THE STATE OF THE App
   const initialState = {
     user: '',
     error: '',
+    info: '',
   }
 
   // create reducer
@@ -33,6 +35,16 @@ function App() {
         return {
           ...state,
           error: '',
+        }
+      case 'SET_INFO':
+        return {
+          ...state,
+          info: action.info,
+        }
+      case 'CLEAR_INFO':
+        return {
+          ...state,
+          info: '',
         }
       default:
         return state
