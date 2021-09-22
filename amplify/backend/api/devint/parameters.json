@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "devint",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authdevint",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
